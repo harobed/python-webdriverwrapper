@@ -1,11 +1,16 @@
 #!/usr/bin/env python
+import os, re
 
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
 
-from webdriverwrapper import VERSION
+here = os.path.abspath(os.path.dirname(__file__))
+
+v = open(os.path.join(here, 'webdriverwrapper', '__init__.py'))
+VERSION = re.compile(r".*VERSION = '(.*?)'", re.S).match(v.read()).group(1)
+v.close()
 
 
 setup(
